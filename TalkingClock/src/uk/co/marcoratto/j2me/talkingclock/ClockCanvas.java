@@ -58,28 +58,34 @@ public class ClockCanvas extends Canvas implements Runnable {
     }
 
     public void paint(Graphics g) {
-        int w = getWidth();
-        int h = getHeight();
+        int screenWidth = getWidth();
+        int screenHeight = getHeight();
+
+        int imgWidth = imageNumeri[0].getWidth();
+        int imgHeight = imageNumeri[0].getHeight();
 
         g.setColor(0);
-        g.fillRect(0, 0, w, h);
+        g.fillRect(0, 0, screenWidth, screenHeight);
 
-        int x = 10;
-        g.drawImage(imageNumeri[Utility.getHour() / 10], x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageNumeri[Utility.getHour() % 10], x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageDuePunti, x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageNumeri[Utility.getMin() / 10], x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageNumeri[Utility.getMin() % 10], x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageDuePunti, x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageNumeri[Utility.getSec() / 10], x, 0, Graphics.TOP | Graphics.HCENTER);
-        x += 14;
-        g.drawImage(imageNumeri[Utility.getSec() % 10], x, 0, Graphics.TOP | Graphics.HCENTER);
+        int x = (screenWidth - 14 * 7) / 2;
+        int y = (screenHeight - imgHeight) / 2;
+        
+        
+        g.drawImage(imageNumeri[Utility.getHour() / 10], x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageNumeri[Utility.getHour() % 10], x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageDuePunti, x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageNumeri[Utility.getMin() / 10], x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageNumeri[Utility.getMin() % 10], x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageDuePunti, x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageNumeri[Utility.getSec() / 10], x, y, Graphics.TOP | Graphics.HCENTER);
+        x += imgWidth;
+        g.drawImage(imageNumeri[Utility.getSec() % 10], x, y, Graphics.TOP | Graphics.HCENTER);
     }
 
     public void run() {
