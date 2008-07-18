@@ -117,12 +117,12 @@ public class TalkingClockMIDlet extends MIDlet implements CommandListener {
   	   int min   = Utility.getMin();  	  
 
   	   
-  	 SoundManager.getInstance().clearList();
+  	   SoundManager.getInstance().clearList();
   	   SoundManager.getInstance().addSound("/audio/sonoleore.wav");  	   
+  	   SoundManager.getInstance().addSound("/audio/" + Utility.intTwoDigit(hour) + ".wav");  	   
        if (min == 0) {
      	   SoundManager.getInstance().addSound("/audio/00.wav");  	   
        } else {
-     	  SoundManager.getInstance().addSound("/audio/" + Utility.intTwoDigit(hour) + ".wav");  	   
      	  SoundManager.getInstance().addSound("/audio/e.wav");  	   
      	  SoundManager.getInstance().addSound("/audio/" + Utility.intTwoDigit(min) + ".wav");  	   
           if (min == 1) {
