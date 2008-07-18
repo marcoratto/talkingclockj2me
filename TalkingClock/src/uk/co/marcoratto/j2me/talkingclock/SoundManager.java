@@ -97,7 +97,7 @@ public class SoundManager implements Runnable {
 			is = SoundManager.class.getResourceAsStream(sound);
 			if (sound.endsWith(".wav")) {
 				player = Manager.createPlayer(is, "audio/x-wav");
-			} if (sound.endsWith(".amr")) {
+			} else if (sound.endsWith(".amr")) {
 				player = Manager.createPlayer(is, "audio/amr");
 			}
 			player.setLoopCount(1);
@@ -111,13 +111,16 @@ public class SoundManager implements Runnable {
 			try {
                 player.realize();
                 long dur = player.getDuration();
+                
+                if (dur == 0) {
+                	log.warn("Why player.getDuration() return ZERO?");
+                }
                 player.start();
                 sleep(dur);
             } catch (Exception e) {
             	e.printStackTrace();
 				log.warn(e.getMessage());
             }
-            
             // IMPORTANT!!!
             // You MUST deallocate the player (just one)
             player.deallocate();
@@ -160,9 +163,13 @@ public class SoundManager implements Runnable {
 	}
 	
     public void sleep(long val) {
-		log.trace("sleep()");
+		log.trace("sleep():" + val);
         int mval = (int)(val / 1000);
 		log.debug("sleep(): " + mval + " ms.");
+		if (mval == 0) {
+			mval = 500;
+			log.warn("sleep(): " + mval + " ms.");
+		}
         try {
 			Thread.sleep(mval);
 		} catch (InterruptedException e) {
