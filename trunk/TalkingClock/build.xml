@@ -47,18 +47,7 @@
 
 	<target name="dist_binary" depends="clean,init" description="create distributable package">
 		<copy file="${project_home}/KEYS" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/AUTHORS" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/THANKS" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/BUGS" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/INSTALL" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/NEWS" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/TODO" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/COPYING" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/README" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/MANUAL" todir="${tmp_dir}/${project_name}-${project_version}" />
 		<copy file="${project_home}/VERSION" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/FAQ" todir="${tmp_dir}/${project_name}-${project_version}" />
-		<copy file="${project_home}/ChangeLog" todir="${tmp_dir}/${project_name}-${project_version}" />
 
 		<copy file="${jar_file}" todir="${tmp_dir}/${project_name}-${project_version}/bin" />
 		<copy file="${jad_file}" todir="${tmp_dir}/${project_name}-${project_version}/bin" />
