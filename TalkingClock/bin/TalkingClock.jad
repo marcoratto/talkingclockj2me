@@ -1,7 +1,7 @@
 MIDlet-1: Talking Clock, ./logo.png, uk.co.marcoratto.j2me.talkingclock.TalkingClockMIDlet
 MIDlet-Description: Talking Clock
 MIDlet-Info-URL: http://code.google.com/p/talkingclockj2me
-MIDlet-Jar-Size: 1131073
+MIDlet-Jar-Size: 1130524
 MIDlet-Jar-URL: TalkingClock.jar
 MIDlet-Name: Talking Clock
 MIDlet-Vendor: Marco Ratto
