@@ -77,6 +77,7 @@ public class SoundManager implements Runnable {
 			return;
 		}
 		if (!terminated) {
+			log.debug("SoundManager is playing!");
 			return;
 		}
 		synchronized (this) {
@@ -86,12 +87,16 @@ public class SoundManager implements Runnable {
 		}
 	}
 
+	public boolean isPlaying()  {
+		return this.terminated;
+	}
+	
 	public void playSound(String sound)  {
 		log.trace("playSound(String)");
 		if (!this.enabled) {
+			log.debug("SoundManager disable!");
 			return;
 		}
-		
 		InputStream is = null;
 		try {
 			is = SoundManager.class.getResourceAsStream(sound);
@@ -155,6 +160,7 @@ public class SoundManager implements Runnable {
 			this.thread = null;
 			this.terminated = true;
 		}
+		log.debug("SoundManager terminated!");
 	}
 	
 	public void setEnabled(boolean enabled) {
@@ -163,7 +169,6 @@ public class SoundManager implements Runnable {
 	}
 	
     public void sleep(long val) {
-		log.trace("sleep():" + val);
         int mval = (int)(val / 1000);
 		log.debug("sleep(): " + mval + " ms.");
 		if (mval == 0) {
