@@ -167,7 +167,7 @@ public class SoundManager implements Runnable {
         int mval = (int)(val / 1000);
 		log.debug("sleep(): " + mval + " ms.");
 		if (mval == 0) {
-			mval = 500;
+			mval = 1000;
 			log.warn("sleep(): " + mval + " ms.");
 		}
         try {
