@@ -2,7 +2,7 @@
 <jnlp
   spec="1.0+"
   codebase="http://www.microemu.org/microemu-webstart"
-  href="http://code.google.com/p/talkingclockj2me/source/browse/trunk/TalkingClock/bin/TalkingClock.jnlp">
+  href="http://talkingclockj2me.googlecode.com/svn/trunk/TalkingClock/bin/TalkingClock.jnlp">
   <information>
     <title>Talking Clock For J2ME</title>
     <vendor>Marco Ratto</vendor>
@@ -34,7 +34,7 @@
   <application-desc main-class="org.microemu.app.Main">
         <argument>--impl</argument>
         <argument>org.microemu.cldc.file.FileSystem</argument>
-        <argument>http://code.google.com/p/talkingclockj2me/source/browse/trunk/TalkingClock/bin/TalkingClock.jad</argument>
+        <argument>http://talkingclockj2me.googlecode.com/svn/trunk/TalkingClock/bin/TalkingClock.jad</argument>
   </application-desc>
 
 </jnlp>
