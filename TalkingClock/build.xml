@@ -1,0 +1,145 @@
+<project name="TalkingClock" default="dist" basedir=".">
+  <description>
+  	Talking Clock For J2ME
+  </description>
+	<property environment="myenv" />
+	<property name="project_version" value="1.0" />
+	<property name="project_name" value="${ant.project.name}" />
+	<property name="project_home" location="." />
+	<property name="build_dir" location="${project_home}/build" />
+	<property name="bin_dir" location="${project_home}/bin" />
+	<property name="tmp_dir" location="${project_home}/tmp" />
+	<property name="src_dir" location="${project_home}/src" />
+	<property name="screenshots_dir" location="${project_home}/screenshots" />
+	<property name="screenshots_dir" location="${project_home}/screenshots" />
+	<property name="jar_file" location="${bin_dir}/${project_name}.jar" />
+	<property name="jad_file" location="${bin_dir}/${project_name}.jad" />
+	<property name="md5_file" location="${bin_dir}/${project_name}.jar.md5" />
+	<property name="sha_file" location="${bin_dir}/${project_name}.jar.sha" />
+	<property name="pgp_file" location="${bin_dir}/${project_name}.jar.asc" />
+	<property name="file_src.tar" value="${build_dir}/${project_name}_v${project_version}.src.tar" />
+	<property name="file_src.tar.gz" value="${build_dir}/${project_name}_v${project_version}.src.tar.gz" />
+	<property name="file_src.zip" value="${build_dir}/${project_name}_v${project_version}.src.zip" />
+	<property name="file_bin.tar" value="${build_dir}/${project_name}_v${project_version}.bin.tar" />
+	<property name="file_bin.tar.gz" value="${build_dir}/${project_name}_v${project_version}.bin.tar.gz" />
+	<property name="file_bin.zip" value="${build_dir}/${project_name}_v${project_version}.bin.zip" />
+
+	<target name="clean" description="clean up">
+		<delete dir="${tmp_dir}/${project_name}-${project_version}" />
+		<delete file="${file_src.tar.gz}" />
+		<delete file="${file_bin.tar.gz}" />
+		<delete file="${file_src.zip}" />
+		<delete file="${file_bin.zip}" />
+	</target>
+
+	<target name="init" description="Initialization">
+		<mkdir dir="${build_dir}" />
+		<mkdir dir="${screenshots_dir}" /> 
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}" />
+		<mkdir dir="${screenshots_dir}/${project_name}-${project_version}" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/bin" />
+		<echo file="${project_home}/VERSION">${project_name}_v${project_version}
+		</echo>
+	</target>
+
+	<target name="dist" depends="dist_sources" description="create distributable package">
+	</target>
+
+	<target name="dist_binary" depends="clean,init" description="create distributable package">
+		<copy file="${project_home}/KEYS" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/AUTHORS" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/THANKS" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/BUGS" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/INSTALL" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/NEWS" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/TODO" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/COPYING" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/README" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/MANUAL" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/VERSION" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/FAQ" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/ChangeLog" todir="${tmp_dir}/${project_name}-${project_version}" />
+
+		<copy file="${jar_file}" todir="${tmp_dir}/${project_name}-${project_version}/bin" />
+		<copy file="${jad_file}" todir="${tmp_dir}/${project_name}-${project_version}/bin" />
+
+		<zip destfile="${file_bin.zip}">
+			<zipfileset dir="${tmp_dir}/${project_name}-${project_version}" prefix="${project_name}-${project_version}" />
+		</zip>
+		<antcall target="checksum">
+			<param name="file" value="${file_bin.zip}" />
+		</antcall>
+
+		<tar tarfile="${file_bin.tar}">
+			<tarfileset dir="${tmp_dir}/${project_name}-${project_version}" prefix="${project_name}-${project_version}" />
+		</tar>
+		<gzip zipfile="${file_bin.tar.gz}" src="${file_bin.tar}" />
+		<delete file="${file_bin.tar}" />
+		<antcall target="checksum">
+			<param name="file" value="${file_bin.tar.gz}" />
+		</antcall>
+	</target>
+
+	<target name="dist_sources" depends="dist_binary" description="create distributable package">
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/classes" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/tmp" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/tmplib" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/tmpclasses" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/screenshots" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/deployed" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/.eclipseme.tmp" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/.processed" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/.settings" />
+
+		<copy file="${project_home}/build.xml" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/.project" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${project_home}/project.properties" todir="${tmp_dir}/${project_name}-${project_version}" />
+		<copy file="${jad_file}" todir="${tmp_dir}/${project_name}-${project_version}" />
+
+		<copy todir="${tmp_dir}/${project_name}-${project_version}/.settings">
+			<fileset dir="${project_home}/.settings">
+				<exclude name="**/CVS" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${tmp_dir}/${project_name}-${project_version}/src">
+			<fileset dir="${project_home}/src">
+				<exclude name="**/CVS" />
+			</fileset>
+		</copy>
+
+		<copy todir="${tmp_dir}/${project_name}-${project_version}/res">
+			<fileset dir="${project_home}/res">
+				<exclude name="**/CVS" />
+			</fileset>
+		</copy>
+
+		<zip destfile="${file_src.zip}">
+			<zipfileset dir="${tmp_dir}/${project_name}-${project_version}" prefix="${project_name}-${project_version}" />
+		</zip>
+		<antcall target="checksum">
+			<param name="file" value="${file_src.zip}" />
+		</antcall>
+
+		<tar tarfile="${file_src.tar}">
+			<tarfileset dir="${tmp_dir}/${project_name}-${project_version}" prefix="${project_name}-${project_version}" />
+		</tar>
+		<gzip zipfile="${file_src.tar.gz}" src="${file_src.tar}" />
+		<delete file="${file_src.tar}" />
+		<antcall target="checksum">
+			<param name="file" value="${file_src.tar.gz}" />
+		</antcall>
+	</target>
+
+	<target name="checksum">
+		<delete file="${file}.md5" />
+		<delete file="${file}.sha" />
+		<delete file="${file}.asc" />
+		<checksum file="${file}" forceOverwrite="yes" algorithm="MD5" format="MD5SUM" fileext=".md5" />
+		<checksum file="${file}" forceOverwrite="yes" algorithm="SHA" format="MD5SUM" fileext=".sha" />
+		<exec executable="gpg" os="Linux" vmlauncher="false">
+			<arg line="-u marcoratto@gmail.com -a -s -b ${file}" />
+		</exec>
+	</target>
+</project>
+
