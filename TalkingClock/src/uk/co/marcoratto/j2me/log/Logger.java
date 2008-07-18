@@ -19,12 +19,17 @@
  */
 package uk.co.marcoratto.j2me.log;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 import javax.microedition.midlet.MIDlet;
+
+import uk.co.marcoratto.j2me.i18n.I18N;
 
 /**
  * @author Marco Ratto
@@ -125,18 +130,29 @@ public class Logger implements CommandListener{
         this.buffer = new StringBuffer();
         this.maxSize = DEFAULT_MAX_SIZE;
 
+        refreshCommand = new Command(I18N.getInstance().translate("log.button_refresh"), Command.OK, 1);
+        backCommand = new Command(I18N.getInstance().translate("log.button_back"), Command.BACK, 2);
+        offCommand = new Command(I18N.getInstance().translate("log.button_logoff"), Command.BACK, 3);
+        fatalCommand = new Command(I18N.getInstance().translate("log.button_fatal"), Command.BACK, 4);
+        errorCommand = new Command(I18N.getInstance().translate("log.button_error"), Command.BACK, 5);
+        warnCommand = new Command(I18N.getInstance().translate("log.button_warn"), Command.BACK, 6);
+        infoCommand = new Command(I18N.getInstance().translate("log.button_info"), Command.BACK, 7);
+        debugCommand = new Command(I18N.getInstance().translate("log.button_debug"), Command.BACK, 8);
+        traceCommand = new Command(I18N.getInstance().translate("log.button_trace"), Command.BACK, 9);
+        resetCommand = new Command(I18N.getInstance().translate("log.button_reset"), Command.BACK, 10);
+
         // Form related setup;
-        form = new Form("Log");
-        form.addCommand(refreshCommand = new Command("Refresh", Command.OK, 1));
-        form.addCommand(backCommand = new Command("Back", Command.BACK, 2));
-        form.addCommand(offCommand = new Command("Loggin Off", Command.BACK, 3));
-        form.addCommand(fatalCommand = new Command("Fatal", Command.BACK, 4));
-        form.addCommand(errorCommand = new Command("Error", Command.BACK, 5));
-        form.addCommand(warnCommand = new Command("Warn", Command.BACK, 6));
-        form.addCommand(infoCommand = new Command("Info", Command.BACK, 7));
-        form.addCommand(debugCommand = new Command("Debug", Command.BACK, 8));
-        form.addCommand(traceCommand = new Command("Trace", Command.BACK, 9));
-        form.addCommand(resetCommand = new Command("Reset", Command.BACK, 10));
+        form = new Form(I18N.getInstance().translate("log.title"));
+        form.addCommand(refreshCommand);
+        form.addCommand(backCommand);
+        form.addCommand(offCommand);
+        form.addCommand(fatalCommand);
+        form.addCommand(errorCommand);
+        form.addCommand(warnCommand);
+        form.addCommand(infoCommand);
+        form.addCommand(debugCommand);
+        form.addCommand(traceCommand);
+        form.addCommand(resetCommand);
 
         form.setCommandListener(this);
        
@@ -247,9 +263,9 @@ public class Logger implements CommandListener{
         }
         this.loggingLevel = level;
         if(loggingLevel == OFF || loggingLevel == ALL){
-        	form.setTitle("Logging " + LEVEL_NAMES[loggingLevel]);
+        	form.setTitle(I18N.getInstance().translate("log.title") + "(" + LEVEL_NAMES[loggingLevel] + ")");
         }else{
-        	form.setTitle("Logging @ " + LEVEL_NAMES[loggingLevel]);
+        	form.setTitle(I18N.getInstance().translate("log.title") + "(" + LEVEL_NAMES[loggingLevel] + ")");
         }
     }
 
@@ -292,8 +308,24 @@ public class Logger implements CommandListener{
     public void trace(String message) {
     	this.log(TRACE, message);    	
     }
+    public void trace(Hashtable ht) {
+    	Enumeration keys = ht.keys();
+    	while (keys.hasMoreElements()) {
+    		Object key = (Object) keys.nextElement();
+    		Object value = (Object) ht.get(key);
+    		this.log(TRACE, key + "=" + value);	
+    	}
+    }
     public void debug(String message) {
     	this.log(DEBUG, message);
+    }
+    public void debug(Hashtable ht) {
+    	Enumeration keys = ht.keys();
+    	while (keys.hasMoreElements()) {
+    		Object key = (Object) keys.nextElement();
+    		Object value = (Object) ht.get(key);
+    		this.log(DEBUG, key + "=" + value);	
+    	}
     }
     public void info(String message) {
     	this.log(INFO, message);
@@ -314,7 +346,7 @@ public class Logger implements CommandListener{
          } catch (Exception e) {
             // Ignore
         	 this.loggingLevel = ALL;
-        	 e.printStackTrace();
+        	 System.err.println("Logger.setLoggingLevel(): loggingLevel not valid!");
          }
     	
     }
@@ -325,7 +357,7 @@ public class Logger implements CommandListener{
         } catch (Exception e) {
             // Ignore
         	 this.maxSize = DEFAULT_MAX_SIZE;
-        	 e.printStackTrace();
+        	 System.err.println("Logger.setLoggingSize(): loggingSize not valid!");
          }
     	
     }
