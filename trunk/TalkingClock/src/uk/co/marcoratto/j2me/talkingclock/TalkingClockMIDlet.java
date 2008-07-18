@@ -112,13 +112,10 @@ public class TalkingClockMIDlet extends MIDlet implements CommandListener {
 	   SoundManager.getInstance().setEnabled(false);
    }
 
-   private void speak() { 	   
+   private void speak() {
   	   int hour  = Utility.getHour();
   	   int min   = Utility.getMin();  	  
-  	   StringBuffer msg = new StringBuffer("Talking Clock - Sono le ore ");
-  	   msg.append(Utility.intTwoDigit(hour));
-  	   msg.append(" e ");
-  	   msg.append(Utility.intTwoDigit(min));
+
   	   
   	 SoundManager.getInstance().clearList();
   	   SoundManager.getInstance().addSound("/audio/sonoleore.wav");  	   
@@ -135,6 +132,5 @@ public class TalkingClockMIDlet extends MIDlet implements CommandListener {
           }
        }
        SoundManager.getInstance().playBackground();
-  	   clockGUI.setTicker(new Ticker(msg.toString()));
    }
 }
