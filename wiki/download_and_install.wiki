@@ -1,0 +1,32 @@
+#summary Downloads and Install
+#labels Phase-Deploy
+
+=Downloads and Install=
+The installation is very simple and similar to install a Java game.
+
+First of all, you have to verify on the site [http://www.j2mepolish.org/devices/devices-vendor.html J2ME Polish] if your mobile phone supports Java.
+
+==Install from a mobile phone using internet/WAP with a browser==
+
+  # Open the browser on your mobile phone and go to the [http://code.google.com/p/beatswatchclock4j2me/source/browse/trunk/beatswatchclock4j2me/BeatSwatch/bin]
+  # Choose the .jad file (or choose the .jar file if your mobile phone doesn't support jad files)
+  # Follow the instructions of your mobile phone for completing the installation 
+
+==Install from the memory card==
+
+  # Open the browser on your desktop and go to the [http://code.google.com/p/beatswatchclock4j2me/downloads/list]
+  # Download the binary archive (.zip for Windows, .tar.gz for `*`nix or Mac)
+  # Extract the .zip file (or .tar.gz file) on your desktop
+  # Copy the .jar file on your memory card
+  # Insert the memory card on your mobile phone
+  # Search the .jar file you have been just copied
+  # Open the .jar file
+  # Follow the instructions of your mobile phone for completing the installation 
+
+==Install using cable, bluetooth or infrared port==
+
+  # Open the browser on your desktop and go to the [http://code.google.com/p/beatswatchclock4j2me/downloads/list]
+  # Download the binary archive (.zip for Windows, .tar.gz for `*`nix or Mac]
+  # Extract the .zip file (or .tar.gz file) on your desktop
+  # Send the .jar file on your mobile phone via bluetooth, infrared port or cable
+  # Follow the instructions of your mobile phone for completing the installation 
