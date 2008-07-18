@@ -2,13 +2,13 @@
 <jnlp
   spec="1.0+"
   codebase="http://www.microemu.org/microemu-webstart"
-  href="http://beatswatchclock4j2me.googlecode.com/svn/trunk/beatswatchclock4j2me/BeatSwatch/bin/BeatSwatch.jnlp">
+  href="http://code.google.com/p/talkingclockj2me/source/browse/trunk/TalkingClock/bin/TalkingClock.jnlp">
   <information>
-    <title>Beat Swatch Clock For J2ME</title>
+    <title>Talking Clock For J2ME</title>
     <vendor>Marco Ratto</vendor>
     <homepage href="http://marcoratto.co.uk/stretching"/>
-    <description>Beat Swatch Clock For J2ME</description>
-    <description kind="short">Beat Swatch Clock</description>
+    <description>Talking Clock For J2ME</description>
+    <description kind="short">Talking Clock</description>
     <icon href="icon.png"/>
     <offline-allowed/>
   </information>
@@ -34,7 +34,7 @@
   <application-desc main-class="org.microemu.app.Main">
         <argument>--impl</argument>
         <argument>org.microemu.cldc.file.FileSystem</argument>
-        <argument>http://beatswatchclock4j2me.googlecode.com/svn/trunk/beatswatchclock4j2me/BeatSwatch/bin/BeatSwatch.jad</argument>
+        <argument>http://code.google.com/p/talkingclockj2me/source/browse/trunk/TalkingClock/bin/TalkingClock.jad</argument>
   </application-desc>
 
 </jnlp>
