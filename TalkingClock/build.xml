@@ -104,6 +104,8 @@
 	<target name="dist_sources" depends="dist_binary" description="create distributable package">
 		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/classes" />
 		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/tmp" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/lib" />
+		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/etc" />
 		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/tmplib" />
 		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/tmpclasses" />
 		<mkdir dir="${tmp_dir}/${project_name}-${project_version}/screenshots" />
@@ -135,6 +137,18 @@
 			</fileset>
 		</copy>
 
+		<copy todir="${tmp_dir}/${project_name}-${project_version}/lib">
+			<fileset dir="${project_home}/lib">
+				<exclude name="**/.svn" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${tmp_dir}/${project_name}-${project_version}/etc">
+			<fileset dir="${project_home}/etc">
+				<exclude name="**/.svn" />
+			</fileset>
+		</copy>
+		
 		<zip destfile="${file_src.zip}">
 			<zipfileset dir="${tmp_dir}/${project_name}-${project_version}" prefix="${project_name}-${project_version}" />
 		</zip>
