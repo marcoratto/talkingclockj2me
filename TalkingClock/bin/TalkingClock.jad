@@ -1,13 +1,13 @@
+MIDlet-Jar-Size: 561000
 MIDlet-1: Talking Clock, ./logo.png, uk.co.marcoratto.j2me.talkingclock.TalkingClockMIDlet
-MIDlet-Description: Talking Clock
-MIDlet-Info-URL: http://code.google.com/p/talkingclockj2me
-MIDlet-Jar-Size: 1131098
 MIDlet-Jar-URL: TalkingClock.jar
-MIDlet-Name: Talking Clock
-MIDlet-Permissions: javax.microedition.media.control.RecordControl
-MIDlet-Vendor: Marco Ratto
-MIDlet-Version: 1.0.0
-MicroEdition-Configuration: CLDC-1.1
-MicroEdition-Profile: MIDP-2.0
-loggingLevel: 2
 loggingSize: 4000
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-Version: 1.0.0
+loggingLevel: 2
+MIDlet-Name: Talking Clock
+MIDlet-Description: Talking Clock
+MIDlet-Vendor: Marco Ratto
+MIDlet-Info-URL: http://code.google.com/p/talkingclockj2me
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Permissions: javax.microedition.media.control.RecordControl
