@@ -1,0 +1,3 @@
+Simple Talking Clock written in Java for mobile phone J2ME compliant.
+You can see a demo using [Java Web Start Micro Emulator](http://talkingclockj2me.googlecode.com/svn/trunk/TalkingClock/bin/TalkingClock.jnlp).
+![http://talkingclockj2me.googlecode.com/svn/trunk/TalkingClock/screenshots/TalkingClock-1.0/MicroEmulator.png](http://talkingclockj2me.googlecode.com/svn/trunk/TalkingClock/screenshots/TalkingClock-1.0/MicroEmulator.png)
